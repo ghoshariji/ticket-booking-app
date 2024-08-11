@@ -1,0 +1,11 @@
+[
+    {
+        "destinationS":"A",
+        "destinationE":"D",
+        "timeS":"2:30",
+        "timeE":"5:30",
+        "trainNo":"12345",
+        "price":"30",
+        "isCancel":false
+    }
+]
