@@ -1,7 +1,7 @@
 import user from "@/models/userModal";
 import mongoDb from "@/utils/dbConn";
 import { NextResponse } from "next/server";
-
+import bcrypt from "bcryptjs";
 export async function POST(req) {
   try {
     await mongoDb();
@@ -13,7 +13,8 @@ export async function POST(req) {
         { status: 401 }
       );
     }
-    if (password !== checkEmail.password) {
+    const checkPass = await bcrypt.compare(password, checkEmail.password);
+    if (!checkPass) {
       return (
         NextResponse, json({ message: "Password Incorrect" }, { status: 401 })
       );
