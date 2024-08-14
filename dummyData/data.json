@@ -1,11 +1,191 @@
 [
     {
-        "destinationS":"A",
-        "destinationE":"D",
-        "timeS":"2:30",
-        "timeE":"5:30",
-        "trainNo":"12345",
-        "price":"30",
-        "isCancel":false
+        "destinationS": "The Matrix",
+        "destinationE": "IMAX",
+        "timeS": "10:00 AM",
+        "timeE": "12:30 PM",
+        "trainNo": "MOV12345",
+        "price": "12.50",
+        "isCancel": false
+    },
+    {
+        "destinationS": "Inception",
+        "destinationE": "Dolby Cinema",
+        "timeS": "1:00 PM",
+        "timeE": "3:30 PM",
+        "trainNo": "MOV12346",
+        "price": "15.00",
+        "isCancel": false
+    },
+    {
+        "destinationS": "Interstellar",
+        "destinationE": "Standard",
+        "timeS": "4:00 PM",
+        "timeE": "7:00 PM",
+        "trainNo": "MOV12347",
+        "price": "10.00",
+        "isCancel": false
+    },
+    {
+        "destinationS": "Avatar",
+        "destinationE": "IMAX 3D",
+        "timeS": "7:30 PM",
+        "timeE": "10:30 PM",
+        "trainNo": "MOV12348",
+        "price": "20.00",
+        "isCancel": false
+    },
+    {
+        "destinationS": "Avengers: Endgame",
+        "destinationE": "4DX",
+        "timeS": "11:00 AM",
+        "timeE": "2:30 PM",
+        "trainNo": "MOV12349",
+        "price": "18.00",
+        "isCancel": false
+    },
+    {
+        "destinationS": "The Dark Knight",
+        "destinationE": "Standard",
+        "timeS": "3:00 PM",
+        "timeE": "6:00 PM",
+        "trainNo": "MOV12350",
+        "price": "9.50",
+        "isCancel": false
+    },
+    {
+        "destinationS": "Joker",
+        "destinationE": "IMAX",
+        "timeS": "6:30 PM",
+        "timeE": "9:00 PM",
+        "trainNo": "MOV12351",
+        "price": "14.00",
+        "isCancel": true
+    },
+    {
+        "destinationS": "Parasite",
+        "destinationE": "Dolby Cinema",
+        "timeS": "9:30 AM",
+        "timeE": "12:00 PM",
+        "trainNo": "MOV12352",
+        "price": "11.00",
+        "isCancel": false
+    },
+    {
+        "destinationS": "1917",
+        "destinationE": "Standard",
+        "timeS": "1:30 PM",
+        "timeE": "4:00 PM",
+        "trainNo": "MOV12353",
+        "price": "13.00",
+        "isCancel": false
+    },
+    {
+        "destinationS": "The Lion King",
+        "destinationE": "IMAX 3D",
+        "timeS": "4:30 PM",
+        "timeE": "7:00 PM",
+        "trainNo": "MOV12354",
+        "price": "16.00",
+        "isCancel": false
+    },
+    {
+        "destinationS": "Spider-Man: No Way Home",
+        "destinationE": "4DX",
+        "timeS": "7:30 PM",
+        "timeE": "10:00 PM",
+        "trainNo": "MOV12355",
+        "price": "19.00",
+        "isCancel": false
+    },
+    {
+        "destinationS": "Dune",
+        "destinationE": "Dolby Cinema",
+        "timeS": "10:00 AM",
+        "timeE": "1:00 PM",
+        "trainNo": "MOV12356",
+        "price": "17.00",
+        "isCancel": true
+    },
+    {
+        "destinationS": "Tenet",
+        "destinationE": "Standard",
+        "timeS": "2:00 PM",
+        "timeE": "5:00 PM",
+        "trainNo": "MOV12357",
+        "price": "10.00",
+        "isCancel": false
+    },
+    {
+        "destinationS": "No Time to Die",
+        "destinationE": "IMAX",
+        "timeS": "5:30 PM",
+        "timeE": "8:00 PM",
+        "trainNo": "MOV12358",
+        "price": "15.00",
+        "isCancel": false
+    },
+    {
+        "destinationS": "Black Panther",
+        "destinationE": "IMAX 3D",
+        "timeS": "8:30 PM",
+        "timeE": "11:00 PM",
+        "trainNo": "MOV12359",
+        "price": "20.00",
+        "isCancel": false
+    },
+    {
+        "destinationS": "Frozen II",
+        "destinationE": "Standard",
+        "timeS": "11:00 AM",
+        "timeE": "1:30 PM",
+        "trainNo": "MOV12360",
+        "price": "9.00",
+        "isCancel": false
+    },
+    {
+        "destinationS": "Toy Story 4",
+        "destinationE": "Dolby Cinema",
+        "timeS": "2:00 PM",
+        "timeE": "4:30 PM",
+        "trainNo": "MOV12361",
+        "price": "12.00",
+        "isCancel": false
+    },
+    {
+        "destinationS": "Shang-Chi",
+        "destinationE": "4DX",
+        "timeS": "5:00 PM",
+        "timeE": "7:30 PM",
+        "trainNo": "MOV12362",
+        "price": "18.00",
+        "isCancel": false
+    },
+    {
+        "destinationS": "Wonder Woman 1984",
+        "destinationE": "IMAX",
+        "timeS": "8:00 PM",
+        "timeE": "10:30 PM",
+        "trainNo": "MOV12363",
+        "price": "14.00",
+        "isCancel": false
+    },
+    {
+        "destinationS": "The Irishman",
+        "destinationE": "Standard",
+        "timeS": "9:00 AM",
+        "timeE": "12:00 PM",
+        "trainNo": "MOV12364",
+        "price": "11.50",
+        "isCancel": false
+    },
+    {
+        "destinationS": "The Godfather",
+        "destinationE": "Dolby Cinema",
+        "timeS": "1:00 PM",
+        "timeE": "4:00 PM",
+        "trainNo": "MOV12365",
+        "price": "16.00",
+        "isCancel": false
     }
 ]

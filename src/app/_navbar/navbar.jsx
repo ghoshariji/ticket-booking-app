@@ -20,7 +20,7 @@ import {
 
 const navigation1 = [
   { name: "Home", href: "/home" },
-  { name: "Book Slot", href: "/slot-book" },
+  { name: "Cart", href: "/cart" },
   { name: "History", href: "/history" },
   { name: "About", href: "/about" },
 ];
