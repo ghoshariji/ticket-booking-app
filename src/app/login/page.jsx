@@ -49,13 +49,14 @@ export default function login() {
     } else {
       toast.success("Login Successfully");
       setLoading(false);
-      setTimeout(() => {
-        if (res.user.isAdmin) {
-          router.push("/admin");
-        } else {
-          router.push("/home");
-        }
-      }, 1000);
+      router.push("/home")
+      // setTimeout(() => {
+      //   if (res.user.isAdmin) {
+      //     router.push("/admin");
+      //   } else {
+      //     router.push("/home");
+      //   }
+      // }, 1000);
     }
   };
   return (

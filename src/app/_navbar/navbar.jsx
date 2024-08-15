@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useReducer, useState } from "react";
 import Link from "next/link";
 import { Bars3Icon } from "@heroicons/react/24/outline";
 import { signOut } from "next-auth/react";
@@ -17,6 +17,7 @@ import {
   PhoneIcon,
   PlayCircleIcon,
 } from "@heroicons/react/20/solid";
+import { useRouter } from "next/navigation";
 
 const navigation1 = [
   { name: "Home", href: "/home" },
@@ -27,10 +28,13 @@ const navigation1 = [
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
+  const router = useRouter();
   return (
     <>
-      <nav className="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
+      <nav
+        className="flex items-center justify-between p-6 lg:px-8"
+        aria-label="Global"
+      >
         <div className="flex lg:flex-1">
           <a href="#" className="-m-1.5 p-1.5">
             <span className="sr-only">Your Company</span>
@@ -66,13 +70,13 @@ export default function Navbar() {
         <div className="hidden lg:flex lg:flex-1 lg:justify-center">
           <Popover className="relative">
             <PopoverButton className="inline-flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
-            <div className="flex -space-x-2 overflow-hidden">
-          <img
-            className="inline-block h-10 w-10 rounded-full ring-2 ring-white"
-            src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-            alt="User Avatar"
-          />
-        </div>
+              <div className="flex -space-x-2 overflow-hidden">
+                <img
+                  className="inline-block h-10 w-10 rounded-full ring-2 ring-white"
+                  src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                  alt="User Avatar"
+                />
+              </div>
             </PopoverButton>
 
             <Transition
@@ -88,7 +92,10 @@ export default function Navbar() {
                   <div className="p-4">
                     <div className="group relative flex gap-x-6 rounded-lg p-4 hover:bg-gray-50">
                       <div>
-                        <Link href="/profile" className="font-semibold text-gray-900">
+                        <Link
+                          href="/profile"
+                          className="font-semibold text-gray-900"
+                        >
                           Profile
                         </Link>
                       </div>
@@ -96,7 +103,8 @@ export default function Navbar() {
                     <div className="group relative flex gap-x-6 rounded-lg p-4 hover:bg-gray-50">
                       <button
                         type="button"
-                        onClick={() => signOut({ callbackUrl: "/login" })}
+                        //onClick={() => signOut({ callbackUrl: "/login" })}
+                        onClick={() => router.push("/login")}
                         className="font-semibold text-gray-900"
                       >
                         Logout
@@ -108,8 +116,6 @@ export default function Navbar() {
             </Transition>
           </Popover>
         </div>
-
-       
       </nav>
     </>
   );

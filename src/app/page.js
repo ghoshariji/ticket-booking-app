@@ -28,6 +28,7 @@ import {
 } from "@heroicons/react/20/solid";
 import { useRouter } from "next/navigation";
 import Footer from "@/component/Footer";
+import Footer1 from "./_footer/page"
 import Link from "next/link"
 import { useSession } from "next-auth/react";
 
@@ -404,6 +405,7 @@ export default function Home() {
       </div>
 
       <Footer />
+      <Footer1 />
     </>
   );
 }
