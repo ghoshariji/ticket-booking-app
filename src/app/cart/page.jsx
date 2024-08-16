@@ -31,7 +31,7 @@ const page = () => {
   };
 
   const handleAddCart = (val) => {
-    dispatch(deleteCart(val));
+    dispatch(deleteCart(val.id));
     dispatch(deletePrice(val.price));
     console.log("Come");
     toast.info("Deleted From Cart");
@@ -173,7 +173,7 @@ const page = () => {
                               <button
                                 type="button"
                                 className="inline-flex items-center text-sm font-medium text-red-600 hover:underline dark:text-red-500"
-                                onClick={() => handleAddCart(val.destinationS)}
+                                onClick={() => handleAddCart(val)}
                               >
                                 <svg
                                   className="me-1.5 h-5 w-5"

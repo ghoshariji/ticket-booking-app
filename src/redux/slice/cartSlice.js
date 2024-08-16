@@ -10,8 +10,9 @@ const cartSlice = createSlice({
       state.push(action.payload);
     },
     deleteCart: (state, action) => {
+      // remove all the value except the id value that passed through the action.payload
       return state.filter(
-        (val, ind) => val.destinationS === action.payload.destinationS
+        (val, ind) => val.id !== action.payload
       );
     },
   },
