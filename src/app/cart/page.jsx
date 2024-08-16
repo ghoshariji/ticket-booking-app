@@ -4,12 +4,15 @@ import React from "react";
 import Navbar from "../_navbar/navbar";
 import { useSelector, useDispatch } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 // import { addCart, deleteCart } from "../../redux/slice/cartSlice";
 import { addCart, deleteCart } from "@/redux/slice/cartSlice";
+import { addPrice, deletePrice } from "@/redux/slice/cartTotalPrice";
+import Image from "next/image";
 const page = () => {
   const dispatch = useDispatch();
   const data = useSelector((state) => state.cart);
+  const dataPrice = useSelector((state) => state.cartPrice);
 
   const handleBuy = async ({ data }) => {
     try {
@@ -26,12 +29,12 @@ const page = () => {
 
   const handleAddCart = (val) => {
     dispatch(deleteCart(val));
-    console.log("Come")
+    dispatch(deletePrice(val.price));
+    console.log("Come");
     toast.info("Deleted From Cart");
   };
   return (
     <div>
-      
       <Navbar />
       <ToastContainer />
       <section className="bg-white py-8 antialiased dark:bg-gray-900 md:py-16">
@@ -49,15 +52,19 @@ const page = () => {
                       <div className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800 md:p-6">
                         <div className="space-y-4 md:flex md:items-center md:justify-between md:gap-6 md:space-y-0">
                           <a href="#" className="shrink-0 md:order-1">
-                            <img
+                            <Image
                               className="h-20 w-20 dark:hidden"
                               src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-front.svg"
                               alt="imac image"
+                              height={200}
+                              width={200}
                             />
-                            <img
+                            <Image
                               className="hidden h-20 w-20 dark:block"
                               src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-front-dark.svg"
                               alt="imac image"
+                              height={200}
+                              width={200}
                             />
                           </a>
 
@@ -66,7 +73,7 @@ const page = () => {
                           </label>
                           <div className="flex items-center justify-between md:order-3 md:justify-end">
                             <div className="flex items-center">
-                              <button
+                              {/* <button
                                 type="button"
                                 id="decrement-button"
                                 data-input-counter-decrement="counter-input"
@@ -87,8 +94,8 @@ const page = () => {
                                     d="M1 1h16"
                                   />
                                 </svg>
-                              </button>
-                              <input
+                              </button> */}
+                              {/* <input
                                 type="text"
                                 id="counter-input"
                                 data-input-counter
@@ -96,8 +103,8 @@ const page = () => {
                                 placeholder=""
                                 value="2"
                                 required
-                              />
-                              <button
+                              /> */}
+                              {/* <button
                                 type="button"
                                 id="increment-button"
                                 data-input-counter-increment="counter-input"
@@ -118,7 +125,7 @@ const page = () => {
                                     d="M9 1v16M1 9h16"
                                   />
                                 </svg>
-                              </button>
+                              </button> */}
                             </div>
                             <div className="text-end md:order-4 md:w-32">
                               <p className="text-base font-bold text-gray-900 dark:text-white">
@@ -196,6 +203,36 @@ const page = () => {
           })}
         </div>
       </section>
+
+      <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
+        <div className="flex justify-between text-base font-medium text-gray-900">
+          <p>Subtotal</p>
+          <p>{dataPrice}</p>
+        </div>
+        <p className="mt-0.5 text-sm text-gray-500">
+          Shipping and taxes calculated at checkout.
+        </p>
+        <div className="mt-6">
+          <a
+            href="#"
+            className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
+          >
+            Checkout
+          </a>
+        </div>
+        <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
+          <p>
+            <button
+              type="button"
+              // onClick={() => setOpen(false)}
+              className="font-medium text-indigo-600 hover:text-indigo-500"
+            >
+              Continue Shopping
+              <span aria-hidden="true"> &rarr;</span>
+            </button>
+          </p>
+        </div>
+      </div>
     </div>
   );
 };

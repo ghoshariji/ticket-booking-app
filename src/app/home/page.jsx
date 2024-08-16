@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import Navbar from "../_navbar/navbar";
 import { useSelector, useDispatch } from "react-redux";
 import { addCart, deleteCart } from "../../redux/slice/cartSlice";
+import { addPrice, deletePrice } from "../../redux/slice/cartTotalPrice";
 import { toast, ToastContainer } from "react-toastify";
 const page = () => {
   const dispatch = useDispatch();
@@ -20,7 +21,8 @@ const page = () => {
 
   const addToCart = (val) => {
     dispatch(addCart(val));
-    toast.success("Added to Cart")
+    dispatch(addPrice(val.price));
+    toast.success("Added to Cart");
   };
   if (!ticketData) {
     return <div>Loading...</div>;
