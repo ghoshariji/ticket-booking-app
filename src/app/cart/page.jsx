@@ -14,18 +14,20 @@ const page = () => {
   const data = useSelector((state) => state.cart);
   const dataPrice = useSelector((state) => state.cartPrice);
 
-  const handleBuy = async (val,price) => {
+  const handleBuy = async (val, price) => {
     try {
-      console.log(val,price)
-      const data = await fetch("api/book", {
+      const res = await fetch("api/book", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({userId:1, movies: val, totalPrice: price }),
+        body: JSON.stringify({ userId: 1, movies: val, totalPrice: price }),
       });
-      console.log(data);
-    } catch (error) {}
+      const data = await res.json()
+      toast.success(data.message)
+    } catch (error) {
+      console.log("Error " + error);
+    }
   };
 
   const handleAddCart = (val) => {

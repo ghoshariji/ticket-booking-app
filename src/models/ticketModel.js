@@ -17,7 +17,7 @@ const ticketSchema = new Schema({
     required: true,
   },
   priceMovie: {
-    type: String,
+    type: Number,
     required: true,
   },
 });

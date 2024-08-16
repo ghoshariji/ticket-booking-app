@@ -5,20 +5,14 @@ import { NextResponse } from "next/server";
 export async function POST(req) {
   try {
     const { userId, movies, totalPrice } = await req.json();
-    console.log(userId);
     // database connection
-
     await mongoDb();
-
     // inserting the data
-
     let movieName = [];
     let movieId = [];
 
     movies.map((val, ind) => movieName.push(val.destinationE));
     movies.map((val, ind) => movieId.push(val.id));
-    console.log(movieName)
-    console.log(movieId)
     const newData = new ticket({
       userId,
       movieName,
