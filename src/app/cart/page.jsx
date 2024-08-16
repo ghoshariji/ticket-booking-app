@@ -14,14 +14,15 @@ const page = () => {
   const data = useSelector((state) => state.cart);
   const dataPrice = useSelector((state) => state.cartPrice);
 
-  const handleBuy = async ({ data }) => {
+  const handleBuy = async (val,price) => {
     try {
+      console.log(val,price)
       const data = await fetch("api/book", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify({userId:1, movies: val, totalPrice: price }),
       });
       console.log(data);
     } catch (error) {}
@@ -213,12 +214,13 @@ const page = () => {
           Shipping and taxes calculated at checkout.
         </p>
         <div className="mt-6">
-          <a
+          <button
             href="#"
             className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
+            onClick={() => handleBuy(data, dataPrice)}
           >
             Checkout
-          </a>
+          </button>
         </div>
         <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
           <p>

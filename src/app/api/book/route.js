@@ -2,21 +2,33 @@ import mongoDb from "@/utils/dbConn";
 import ticket from "@/models/ticketModel";
 import { NextResponse } from "next/server";
 
-export async function POST(req)
-{
-    try {
-        const {userId,movieName,movieId,priceMovie} = await req.json()
-        // database connection
+export async function POST(req) {
+  try {
+    const { userId, movies, totalPrice } = await req.json();
+    console.log(userId);
+    // database connection
 
-        await mongoDb()
+    await mongoDb();
 
-        // inserting the data
+    // inserting the data
 
-        const newData = new ticket(userId,movieName,movieId,priceMovie);
-        await newData.save()
-        return NextResponse({message:"Purchased Successfully"},{status:401})
-    } catch (error) {
-        console.log("Error" + error)
-        return NextResponse({message:"An Error Occurred"},{status:401})
-    }
+    let movieName = [];
+    let movieId = [];
+
+    movies.map((val, ind) => movieName.push(val.destinationE));
+    movies.map((val, ind) => movieId.push(val.id));
+    console.log(movieName)
+    console.log(movieId)
+    const newData = new ticket({
+      userId,
+      movieName,
+      movieId,
+      priceMovie: totalPrice,
+    });
+    await newData.save();
+    return NextResponse.json({ message: "Purchased Successfully" }, { status: 401 });
+  } catch (error) {
+    console.log("Error" + error);
+    return NextResponse.json({ message: "An Error Occurred" }, { status: 401 });
+  }
 }
