@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import Navbar from "../_navbar/navbar";
 import { useSelector, useDispatch } from "react-redux";
 import { addCart, deleteCart } from "../../redux/slice/cartSlice";
+import { toast, ToastContainer } from "react-toastify";
 const page = () => {
   const dispatch = useDispatch();
   const [ticketData, setTicketData] = useState(null);
@@ -19,6 +20,7 @@ const page = () => {
 
   const addToCart = (val) => {
     dispatch(addCart(val));
+    toast.success("Added to Cart")
   };
   if (!ticketData) {
     return <div>Loading...</div>;
@@ -27,6 +29,7 @@ const page = () => {
   return (
     <>
       <Navbar />
+      <ToastContainer />
       <div style={{ padding: "20px", fontFamily: "Arial, sans-serif" }}>
         <h1>Ticket Booking</h1>
         {ticketData.map((ticket, index) => (

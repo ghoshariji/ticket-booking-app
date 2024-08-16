@@ -3,6 +3,8 @@
 import React from "react";
 import Navbar from "../_navbar/navbar";
 import { useSelector, useDispatch } from "react-redux";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 // import { addCart, deleteCart } from "../../redux/slice/cartSlice";
 import { addCart, deleteCart } from "@/redux/slice/cartSlice";
 const page = () => {
@@ -21,9 +23,17 @@ const page = () => {
       console.log(data);
     } catch (error) {}
   };
+
+  const handleAddCart = (val) => {
+    dispatch(deleteCart(val));
+    console.log("Come")
+    toast.info("Deleted From Cart");
+  };
   return (
     <div>
+      
       <Navbar />
+      <ToastContainer />
       <section className="bg-white py-8 antialiased dark:bg-gray-900 md:py-16">
         <div className="mx-auto max-w-screen-xl px-4 2xl:px-0">
           <h2 className="text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl">
@@ -153,9 +163,7 @@ const page = () => {
                               <button
                                 type="button"
                                 className="inline-flex items-center text-sm font-medium text-red-600 hover:underline dark:text-red-500"
-                                onClick={() =>
-                                  dispatch(deleteCart(val.destinationS))
-                                }
+                                onClick={() => handleAddCart(val.destinationS)}
                               >
                                 <svg
                                   className="me-1.5 h-5 w-5"
