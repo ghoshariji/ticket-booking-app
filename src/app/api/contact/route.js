@@ -7,7 +7,6 @@ export async function POST(req) {
   try {
     await mongoDb();
     const { post } = await req.json();
-    console.log(post);
     const newData = await contactModel(post)
     await newData.save()
     return NextResponse.json(

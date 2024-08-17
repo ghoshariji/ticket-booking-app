@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Navbar from "../_navbar/navbar";
+import { toast, ToastContainer } from "react-toastify";
 
 const Page = () => {
   const [post, setPost] = useState({
@@ -15,9 +16,9 @@ const Page = () => {
     setPost({ ...post, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     try {
-      console.log(post)
       const res = await fetch("api/contact", {
         method: "POST",
         headers: {
@@ -26,12 +27,16 @@ const Page = () => {
         body: JSON.stringify({ post }),
       });
       const data = await res.json();
-      console.log(data);
-    } catch (error) {}
+      setPost("");
+      toast.success("Contact Send Successfully");
+    } catch (error) {
+      toast.error("Something went Wrong");
+    }
   };
   return (
     <div>
       <Navbar />
+      <ToastContainer />
       <div>
         <div className="relative">
           <section
