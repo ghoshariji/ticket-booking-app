@@ -8,7 +8,9 @@ const page = () => {
   const [data, setData] = useState([]);
   const fetchData = async () => {
     try {
-      const res = await fetch("api/history");
+      //const userId = localStorage.getItem("userId")
+      const userId = 1;
+      const res = await fetch(`/api/history?userId=${userId}`);
       const data = await res.json();
       setData(data.data);
       console.log(data);

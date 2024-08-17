@@ -1,12 +1,15 @@
 import ticket from "@/models/ticketModel";
+import user from "@/models/userModal";
 import mongoDb from "@/utils/dbConn";
 import { NextResponse } from "next/server";
 
 export async function GET(req) {
   try {
-    console.log("Come");
     await mongoDb();
-    const data = await ticket.find({});
+    // this is the format for the getting the query paramter for the passed throught the utl parameter -> searchParams = new URL(req.url) -> searchParams.get("userId")
+    const { searchParams } = new URL(req.url);
+    const userId = searchParams.get('userId');
+    const data = await ticket.find({ userId: userId });
     return NextResponse.json(
       {
         message: "Data fetch Successfully",
