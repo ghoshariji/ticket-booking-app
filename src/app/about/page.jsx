@@ -1,10 +1,37 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import Navbar from "../_navbar/navbar";
 
 const Page = () => {
+  const [post, setPost] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    subject: "",
+    message: "",
+  });
+  const handleInput = (e) => {
+    setPost({ ...post, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async () => {
+    try {
+      console.log(post)
+      const res = await fetch("api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ post }),
+      });
+      const data = await res.json();
+      console.log(data);
+    } catch (error) {}
+  };
   return (
     <div>
-        <Navbar />
+      <Navbar />
       <div>
         <div className="relative">
           <section
@@ -13,9 +40,11 @@ const Page = () => {
           ></section>
 
           <div className="absolute top-1/2 left-[5%] md:left-[10%] -translate-y-1/2 text-white">
-            <h1 className="text-3xl md:text-5xl font-bold">Get In Touch</h1>
+            <h1 className="text-3xl md:text-5xl font-bold">
+              Any Query Send Us || GET IN TOUCH
+            </h1>
             <p className="text-sm md:text-lg">
-              The Ultimate Guide To Ace SDE Interviews.
+              The Ultimate Guide for Opening new OUTLETs.
             </p>
           </div>
         </div>
@@ -23,7 +52,7 @@ const Page = () => {
         <div className="w-full h-[1200px] md:h-[60vh] lg:h-[130vh] bg-blue-300 relative">
           <div className="absolute -top-[3%] md:-top-[10%] left-1/2 -translate-x-1/2 grid grid-cols-1 md:grid-cols-3 h-fit w-4/5 md:w-[90%] lg:w-4/5 rounded shadow overflow-hidden text-white">
             <div className="p-2 md:p-4 h-full bg-gray-800 col-span-2">
-              <form>
+              <form onSubmit={handleSubmit}>
                 <div className="flex flex-col md:flex-row justify-around items-start md:items-center pt-8 p-4">
                   <h2 className="text-2xl md:text-3xl font-semibold">
                     Send Us A Message
@@ -60,6 +89,8 @@ const Page = () => {
                       required
                       name="name"
                       type="text"
+                      onChange={handleInput}
+                      value={post.name}
                     />
                   </div>
 
@@ -73,6 +104,8 @@ const Page = () => {
                       required
                       name="email"
                       type="email"
+                      onChange={handleInput}
+                      value={post.email}
                     />
                   </div>
 
@@ -86,6 +119,8 @@ const Page = () => {
                       required
                       name="phone"
                       type="tel"
+                      onChange={handleInput}
+                      value={post.phone}
                     />
                   </div>
 
@@ -99,6 +134,8 @@ const Page = () => {
                       required
                       name="subject"
                       type="text"
+                      onChange={handleInput}
+                      value={post.subject}
                     />
                   </div>
 
@@ -110,33 +147,35 @@ const Page = () => {
                       className="border-[1px] border-white bg-gray-800 p-2 rounded-md"
                       placeholder="Enter Your Message"
                       required
-                      name="subject"
+                      name="message"
                       type="text"
+                      onChange={handleInput}
+                      value={post.message}
                     />
                   </div>
                 </div>
-              </form>
 
-              <div className="flex items-center justify-center md:justify-end py-4 px-8">
-                <button className="py-2 px-4 md:py-4 md:px-6 bg-gray-800 rounded-md border-2 border-white flex items-center gap-2 hover:scale-95 transition-all">
-                  <span className="text-xl">Submit</span>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="icon icon-tabler icon-tabler-brand-telegram"
-                    width="30"
-                    height="30"
-                    viewBox="0 0 24 24"
-                    strokeWidth="1.5"
-                    stroke="#fff"
-                    fill="none"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                    <path d="M15 10l-4 4l6 6l4 -16l-18 7l4 2l2 6l3 -4" />
-                  </svg>
-                </button>
-              </div>
+                <div className="flex items-center justify-center md:justify-end py-4 px-8">
+                  <button className="py-2 px-4 md:py-4 md:px-6 bg-gray-800 rounded-md border-2 border-white flex items-center gap-2 hover:scale-95 transition-all">
+                    <span className="text-xl">Submit</span>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="icon icon-tabler icon-tabler-brand-telegram"
+                      width="30"
+                      height="30"
+                      viewBox="0 0 24 24"
+                      strokeWidth="1.5"
+                      stroke="#fff"
+                      fill="none"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                      <path d="M15 10l-4 4l6 6l4 -16l-18 7l4 2l2 6l3 -4" />
+                    </svg>
+                  </button>
+                </div>
+              </form>
             </div>
 
             <div className="py-6 px-4 h-[500px] md:h-full bg-blue-800 grid grid-cols-1 grid-rows-5">
