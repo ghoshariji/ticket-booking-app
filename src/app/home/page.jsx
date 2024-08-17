@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { addCart, deleteCart } from "../../redux/slice/cartSlice";
 import { addPrice, deletePrice } from "../../redux/slice/cartTotalPrice";
 import { toast, ToastContainer } from "react-toastify";
-const page = () => {
+const Page = () => {
   const dispatch = useDispatch();
   const [ticketData, setTicketData] = useState(null);
   const fetchData = async () => {
@@ -86,4 +86,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

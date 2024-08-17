@@ -4,7 +4,7 @@ import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import Navbar from "../_navbar/navbar";
 
-const page = () => {
+const Page = () => {
   const [data, setData] = useState([]);
   const fetchData = async () => {
     try {
@@ -171,4 +171,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

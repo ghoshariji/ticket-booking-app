@@ -4,7 +4,7 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import Spin from "../../component/Loader";
 import { useRouter } from "next/navigation";
-export default function signup() {
+export default function Signup() {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [post, setPost] = useState({

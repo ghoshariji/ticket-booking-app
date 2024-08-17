@@ -9,7 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { addCart, deleteCart } from "@/redux/slice/cartSlice";
 import { addPrice, deletePrice } from "@/redux/slice/cartTotalPrice";
 import Image from "next/image";
-const page = () => {
+const Page = () => {
   const dispatch = useDispatch();
   const data = useSelector((state) => state.cart);
   const dataPrice = useSelector((state) => state.cartPrice);
@@ -241,4 +241,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

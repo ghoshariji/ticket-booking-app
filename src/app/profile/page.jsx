@@ -3,7 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import Navbar from "../_navbar/navbar";
-const page = () => {
+const Page = () => {
   return (
     <>
       <Navbar />
@@ -99,4 +99,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
