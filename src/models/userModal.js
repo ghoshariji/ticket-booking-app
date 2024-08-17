@@ -27,6 +27,12 @@ const userSchema = new Schema(
       type: Boolean,
       default: false,
     },
+    profileImage:{
+      data:Buffer
+    },
+    contentType:{
+      type:String,
+    }
   },
   { timestamps: true }
 );
