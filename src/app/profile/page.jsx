@@ -1,13 +1,44 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import Navbar from "../_navbar/navbar";
+// import { toast, ToastContainer } from "react-toastify";
 const Page = () => {
+  const [name, setName] = useState("");
+  const [password, setPassword] = useState("");
+  const [image, setImage] = useState("");
+
+  const handleImageInput = (e) => {
+    console.log(e.target.files[0]);
+    setImage(e.target.files[0]);
+  };
+  const handleUploadImage = async (e) => {
+    try {
+      const email = "a@gmail.com";
+      const formData = new FormData();
+      formData.append("image", image);
+      formData.append("email", email);
+      const response = await fetch("api/uploadimage", {
+        method: "POST",
+        body: formData,
+      });
+  
+      if (!response.ok) {
+        throw new Error(`API request failed with status ${response.status}`);
+      }
+  
+      const data = await response.json();
+      console.log("Image uploaded successfully:", data);
+    } catch (error) {
+      console.error("Error uploading image:", error.message);
+    }
+  };
+  
   return (
     <>
       <Navbar />
-
+      {/* <ToastContainer /> */}
       <div className="bg-gray-300 antialiased min-h-screen flex items-center justify-center">
         <div className="container mx-auto my-20">
           <div className="bg-white relative shadow rounded-lg w-5/6 md:w-5/6 lg:w-4/6 xl:w-3/6 mx-auto">
@@ -69,26 +100,31 @@ const Page = () => {
                   Recent activities
                 </h3>
                 <div className="mt-5 w-full flex flex-col items-center overflow-hidden text-sm">
-                  <a
+                  <button
                     href="#"
                     className="w-full border-t border-gray-100 text-gray-600 py-4 pl-6 pr-3 block hover:bg-gray-100 transition duration-150"
                   >
-                   Edit Name
-                  </a>
+                    Edit Name
+                  </button>
 
-                  <a
-                    href="#"
+                  <input
+                    type="file"
+                    onChange={handleImageInput}
+                    placeholder="Added new profile picture"
                     className="w-full border-t border-gray-100 text-gray-600 py-4 pl-6 pr-3 block hover:bg-gray-100 transition duration-150"
-                  >
-                    Added new profile picture
-                  </a>
-
-                  <a
+                  />
+                  {image && (
+                    <>
+                      {" "}
+                      <button onClick={handleUploadImage}>Submit {image.name}</button>
+                    </>
+                  )}
+                  <button
                     href="#"
                     className="w-full border-t border-gray-100 text-gray-600 py-4 pl-6 pr-3 block hover:bg-gray-100 transition duration-150"
                   >
                     Edit Password
-                  </a>
+                  </button>
                 </div>
               </div>
             </div>
