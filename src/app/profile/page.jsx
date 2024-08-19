@@ -44,14 +44,15 @@ const Page = () => {
   };
 
   const newProfileImage = (data, contentType) => {
-    const byteArray = Uint8Array.from(atob(data), c => c.charCodeAt(0));
+    // this atob is for the converting the base64 data into the bonary data (string back into its original binary data)
+    // for the uni8Array his creates a Uint8Array, which is an array-like object for handling raw binary data. Each character in the decoded string (from atob) is converted into its corresponding ASCII code using charCodeAt(0), and these codes are stored in the Uint8Array
+    const byteArray = Uint8Array.from(atob(data), (c) => c.charCodeAt(0));
     const blob = new Blob([byteArray], { type: contentType });
     const url = URL.createObjectURL(blob);
     console.log(url);
     setImageUrl(url);
     //window.open(url)
-    return () => URL.revokeObjectURL(url)
-
+    return () => URL.revokeObjectURL(url);
   };
 
   const fetchImageData = async () => {
