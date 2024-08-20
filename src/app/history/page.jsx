@@ -3,15 +3,29 @@
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import Navbar from "../_navbar/navbar";
-
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  ResponsiveContainer,
+} from "recharts";
 const Page = () => {
   const [data, setData] = useState([]);
+  const [newData, setNewData] = useState([]);
   const fetchData = async () => {
     try {
       //const userId = localStorage.getItem("userId")
       const userId = 1;
       const res = await fetch(`/api/history?userId=${userId}`);
       const data = await res.json();
+      let count = 1;
+      const updatedData = data.data.map((val, ind) => ({
+        name: count++,
+        value: val.priceMovie,
+      }));
+      setNewData(updatedData);
       setData(data.data);
       console.log(data);
     } catch (error) {}
@@ -22,6 +36,14 @@ const Page = () => {
   return (
     <div>
       <Navbar />
+      <ResponsiveContainer width="100%" height={250}>
+        <LineChart data={newData}>
+          <XAxis dataKey="name" />
+          <YAxis />
+          <CartesianGrid stroke="#eee" strokeDasharray="5 5" />
+          <Line type="monotone" dataKey="value" stroke="#8884d8" />
+        </LineChart>
+      </ResponsiveContainer>
       <div className="bg-white p-8 rounded-md w-full">
         <div className=" flex items-center justify-between pb-6">
           <div>

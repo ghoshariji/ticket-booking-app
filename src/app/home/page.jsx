@@ -6,12 +6,29 @@ import { useSelector, useDispatch } from "react-redux";
 import { addCart, deleteCart } from "../../redux/slice/cartSlice";
 import { addPrice, deletePrice } from "../../redux/slice/cartTotalPrice";
 import { toast, ToastContainer } from "react-toastify";
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  ResponsiveContainer,
+} from "recharts";
 const Page = () => {
   const dispatch = useDispatch();
   const [ticketData, setTicketData] = useState(null);
+  const [chartData, setChartData] = useState([]);
   const fetchData = async () => {
     const res = await fetch("api/ticket");
     const data = await res.json();
+    console.log(data);
+    // in the updated value setting all the value from the response value
+    const updatedData = data.message.map((val, ind) => ({
+      name: val.destinationS,
+      value: val.isCancel ? 0 : 1,
+    }));
+    // upodating the state value
+    setChartData(updatedData);
     console.log("Data" + JSON.stringify(data));
     setTicketData(data.message);
   };
@@ -32,6 +49,15 @@ const Page = () => {
     <>
       <Navbar />
       <ToastContainer />
+
+      <ResponsiveContainer width="100%" height={250}>
+        <LineChart data={chartData}>
+          <XAxis dataKey="name" />
+          <YAxis />
+          <CartesianGrid stroke="#eee" strokeDasharray="5 5" />
+          <Line type="monotone" dataKey="value" stroke="#8884d8" />
+        </LineChart>
+      </ResponsiveContainer>
       <div style={{ padding: "20px", fontFamily: "Arial, sans-serif" }}>
         <h1>Ticket Booking</h1>
         {ticketData.map((ticket, index) => (
