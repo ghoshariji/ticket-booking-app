@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import Navbar from "../_navbar/navbar";
 import { toast, ToastContainer } from "react-toastify";
+import Footer from "@/component/Footer";
 
 const Page = () => {
   const [post, setPost] = useState({
@@ -219,6 +220,7 @@ const Page = () => {
           </div>
         </div>
       </div>
+      <Footer/>
     </div>
   );
 };
