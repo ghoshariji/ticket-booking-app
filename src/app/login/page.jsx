@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import Spin from "../../component/Loader";
+import { signIn,useSession } from "next-auth/react";
 export default function Login() {
 //   const { data: session, status } = useSession();
   const [loading, setLoading] = useState(false);
@@ -49,7 +50,6 @@ export default function Login() {
     } else {
       toast.success("Login Successfully");
       setLoading(false);
-      router.push("/home")
       // setTimeout(() => {
       //   if (res.user.isAdmin) {
       //     router.push("/admin");
