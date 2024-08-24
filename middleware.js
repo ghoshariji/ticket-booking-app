@@ -1,0 +1,1 @@
+export const config = { matcher: ["/home","/profile","/history","/ticket"] };

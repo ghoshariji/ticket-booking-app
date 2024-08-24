@@ -1,73 +1,91 @@
-import user from "@/models/userModal";
+import User from "@/models/userModal";
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcryptjs from "bcryptjs";
 import mongoDb from "@/utils/dbConn";
+
 const authOptions = {
   providers: [
     CredentialsProvider({
-      name: "credentials",
-      credentials: {},
+      name: "Credentials",
+      credentials: {
+        email: { label: "Email", type: "email" },
+        password: { label: "Password", type: "password" },
+      },
       async authorize(credentials) {
-        const { email, password } = credentials;
+        // Basic validation for credentials
+        const { email, password } = credentials || {};
+        if (!email || !password) {
+          throw new Error("Email and password are required");
+        }
+
+        // Ensure database connection
         await mongoDb();
-        const user = await user.findOne({ email });
-        if (!user) {
-          throw new Error("No user found with this email");
+
+        try {
+          // Find user by email
+          const user = await User.findOne({ email });
+          if (!user) {
+            throw new Error("No user found with this email");
+          }
+
+          // Verify password
+          const isPasswordValid = await bcryptjs.compare(password, user.password);
+          if (!isPasswordValid) {
+            throw new Error("Incorrect password");
+          }
+
+          // Return user data (as JWT payload)
+          return {
+            id: user._id,
+            email: user.email,
+          };
+        } catch (error) {
+          console.error("Error in authorize function:", error);
+          throw new Error("Internal server error");
         }
-
-        const isPasswordValid = await bcryptjs.compare(password, user.password);
-        if (!isPasswordValid) {
-          throw new Error("Incorrect password");
-        }
-
-        const response = {
-          id: user._id,
-          email: user.email,
-          //   name: user.name,
-          //   isAdmin: user.isAdmin,
-          //   room: user.room,
-          //   hostel: user.hostel,
-        };
-
-        return response;
       },
     }),
   ],
-  // settings the session
-
   session: {
-    strategy: "jwt",
+    strategy: "jwt", // Using JWT-based sessions
   },
-  // making the callback
   callbacks: {
+    async jwt({ token, user }) {
+      // Persist user information to the token
+      if (user) {
+        token.email = user.email;
+      }
+      console.log("Token")
+      console.log(token)
+      return token;
+    },
     async session({ session, token }) {
+      // Attach token information to the session object
       if (token) {
         session.user = {
-          ...session.user,
           email: token.email,
-          //   isAdmin: token.isAdmin,
-          //   room: token.room,
-          //   hostel: token.hostel,
         };
       }
-
+      console.log("Session")
+      console.log(session)
       return session;
     },
     async jwt({ token, user }) {
+      // Persist user information to the token
       if (user) {
         token.email = user.email;
-        // token.isAdmin = user.isAdmin;
-        // token.room = user.room;
-        // token.hostel = user.hostel;
       }
+      console.log("Token")
+      console.log(token)
       return token;
     },
   },
-  secret: "abc",
+  secret: process.env.NEXTAUTH_SECRET || "default_secret", // Use environment variable for secret
   pages: {
-    signIn: "/login",
+    signIn: "/login", // Custom login page
   },
+  //debug: process.env.NODE_ENV === "development", // Enable debug logs in development
 };
 
 const handler = NextAuth(authOptions);

@@ -14,14 +14,20 @@ import {
   CartesianGrid,
   ResponsiveContainer,
 } from "recharts";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 import Footer from "@/component/Footer";
+import { useSession } from "next-auth/react";
 
 const Page = () => {
   const dispatch = useDispatch();
   const [ticketData, setTicketData] = useState(null);
   const [chartData, setChartData] = useState([]);
-
+  const { data: session, status } = useSession();
+  console.log(data);
+  if (!session) {
+    router.push("/login");
+    return null;
+  }
   const fetchData = async () => {
     const res = await fetch("/api/ticket");
     const data = await res.json();
@@ -53,7 +59,9 @@ const Page = () => {
       <ToastContainer />
 
       <div className="p-6 lg:p-12 bg-gray-900 text-white">
-        <h1 className="text-3xl font-bold mb-6 text-center">Upcoming Movie Shows</h1>
+        <h1 className="text-3xl font-bold mb-6 text-center">
+          Upcoming Movie Shows
+        </h1>
 
         <ResponsiveContainer width="100%" height={300}>
           <LineChart data={chartData}>
@@ -70,7 +78,9 @@ const Page = () => {
               key={index}
               className="bg-gray-800 p-6 rounded-lg shadow-lg transform transition-transform hover:scale-105"
             >
-              <h2 className="text-xl font-semibold mb-2">Train No: {ticket.trainNo}</h2>
+              <h2 className="text-xl font-semibold mb-2">
+                Train No: {ticket.trainNo}
+              </h2>
               <p className="mb-2">
                 <strong>From:</strong> {ticket.destinationS} &nbsp;
                 <strong>To:</strong> {ticket.destinationE}
@@ -100,7 +110,7 @@ const Page = () => {
           ))}
         </div>
       </div>
-      <Footer/>
+      <Footer />
     </>
   );
 };
