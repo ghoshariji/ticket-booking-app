@@ -14,6 +14,7 @@ import {
   ResponsiveContainer,
   Tooltip,
 } from "recharts";
+import Footer from "../_footer/page";
 
 const Page = () => {
   const [data, setData] = useState([]);
@@ -146,6 +147,7 @@ const Page = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

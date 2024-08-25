@@ -5,6 +5,7 @@ import Image from "next/image";
 import Navbar from "../_navbar/navbar";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import Footer from "../_footer/page";
 
 const Page = () => {
   const [name, setName] = useState("");
@@ -191,6 +192,7 @@ const Page = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 };

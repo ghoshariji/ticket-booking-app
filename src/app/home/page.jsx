@@ -15,9 +15,9 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import "react-toastify/dist/ReactToastify.css";
-import Footer from "@/component/Footer";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import Footer from "../_footer/page";
 
 const Page = () => {
   const dispatch = useDispatch();

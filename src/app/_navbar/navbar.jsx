@@ -103,8 +103,8 @@ export default function Navbar() {
                     <div className="group relative flex gap-x-6 rounded-lg p-4 hover:bg-gray-50">
                       <button
                         type="button"
-                        //onClick={() => signOut({ callbackUrl: "/login" })}
-                        onClick={() => router.push("/login")}
+                        onClick={() => signOut({ callbackUrl: "/login" })}
+                        //onClick={() => router.push("/login")}
                         className="font-semibold text-gray-900"
                       >
                         Logout

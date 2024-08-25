@@ -11,6 +11,7 @@ import { addPrice, deletePrice } from "@/redux/slice/cartTotalPrice";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import Footer from "../_footer/page";
 const Page = () => {
   const dispatch = useDispatch();
   const data = useSelector((state) => state.cart);
@@ -126,6 +127,7 @@ const Page = () => {
           </button>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

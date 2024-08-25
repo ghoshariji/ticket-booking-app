@@ -1,62 +1,58 @@
-import React from "react";
-import Image from "next/image";
+import React from 'react';
+import { FaFacebookF, FaTwitter, FaLinkedinIn, FaInstagram } from 'react-icons/fa';
 
-const Page = () => {
+const Footer = () => {
   return (
-    <div>
-      <footer className="bg-gray-900 rounded-lg shadow dark:bg-gray-900 m-4">
-        <div className="w-full max-w-screen-xl mx-auto p-4 md:py-8">
-          <div className="sm:flex sm:items-center sm:justify-between">
-            <a
-              href="#"
-              className="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse"
-            >
-              <Image
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/IMAX_logo.svg/512px-IMAX_logo.svg.png"
-                className="h-8"
-                width={40}
-                height={40}
-                alt="Movie Booking Logo"
-              />
-              <span className="self-center text-2xl font-semibold whitespace-nowrap text-white">
-                MovieMax
-              </span>
-            </a>
-            <ul className="flex flex-wrap items-center mb-6 text-sm font-medium text-gray-400 sm:mb-0">
-              <li>
-                <a href="#" className="hover:underline me-4 md:me-6">
-                  About Us
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:underline me-4 md:me-6">
-                  Terms of Service
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:underline me-4 md:me-6">
-                  Privacy Policy
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:underline">
-                  Contact Us
-                </a>
-              </li>
+    <footer className="bg-gray-900 text-white py-8">
+      <div className="max-w-6xl mx-auto px-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {/* Company Info */}
+          <div className="space-y-4">
+            <h2 className="text-xl font-bold">Industry Name</h2>
+            <p className="text-gray-400">
+              Building top-tier mobile apps and industry solutions. Enhancing user experiences with innovative and scalable tech.
+            </p>
+            <p className="text-gray-400">Phone: +123 456 7890</p>
+            <p className="text-gray-400">Email: contact@industryname.com</p>
+          </div>
+
+          {/* Navigation Links */}
+          <div>
+            <h3 className="text-lg font-bold mb-4">Quick Links</h3>
+            <ul className="space-y-2">
+              <li><a href="/" className="text-gray-400 hover:text-white">Home</a></li>
+              <li><a href="/about" className="text-gray-400 hover:text-white">About Us</a></li>
+              <li><a href="/services" className="text-gray-400 hover:text-white">Services</a></li>
+              <li><a href="/contact" className="text-gray-400 hover:text-white">Contact</a></li>
             </ul>
           </div>
-          <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
-          <span className="block text-sm text-gray-400 sm:text-center">
-            © 2023{" "}
-            <a href="#" className="hover:underline">
-              MovieMax™
-            </a>
-            . All Rights Reserved.
-          </span>
+
+          {/* Social Media Links */}
+          <div>
+            <h3 className="text-lg font-bold mb-4">Follow Us</h3>
+            <div className="flex space-x-4">
+              <a href="#" className="bg-gray-800 p-2 rounded-full text-gray-400 hover:text-white">
+                <FaFacebookF size={20} />
+              </a>
+              <a href="#" className="bg-gray-800 p-2 rounded-full text-gray-400 hover:text-white">
+                <FaTwitter size={20} />
+              </a>
+              <a href="#" className="bg-gray-800 p-2 rounded-full text-gray-400 hover:text-white">
+                <FaLinkedinIn size={20} />
+              </a>
+              <a href="#" className="bg-gray-800 p-2 rounded-full text-gray-400 hover:text-white">
+                <FaInstagram size={20} />
+              </a>
+            </div>
+          </div>
         </div>
-      </footer>
-    </div>
+
+        <div className="mt-8 text-center text-gray-500">
+          <p>&copy; 2024 Industry Name. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
   );
 };
 
-export default Page;
+export default Footer;

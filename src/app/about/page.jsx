@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Navbar from "../_navbar/navbar";
 import { toast, ToastContainer } from "react-toastify";
-import Footer from "@/component/Footer";
+import Footer from "../_footer/page";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 const Page = () => {
@@ -228,7 +228,7 @@ const Page = () => {
           </div>
         </div>
       </div>
-      <Footer/>
+     <Footer />
     </div>
   );
 };
