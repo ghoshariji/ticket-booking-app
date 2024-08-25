@@ -46,10 +46,12 @@ const Page = () => {
   };
 
   useEffect(() => {
-    if (session) {
+    if (!session) {
+      router.push("/login");
+    } else {
       fetchData();
     }
-  }, [session]); 
+  }, [session]);
   return (
     <div>
       <Navbar />

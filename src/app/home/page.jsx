@@ -24,7 +24,7 @@ const Page = () => {
   const [ticketData, setTicketData] = useState(null);
   const [chartData, setChartData] = useState([]);
   const { data: session, status } = useSession();
-  const router = useRouter()
+  const router = useRouter();
   console.log(session);
   if (!session) {
     router.push("/login");
@@ -42,11 +42,12 @@ const Page = () => {
   };
 
   useEffect(() => {
-    if (session) {
+    if (!session) {
+      router.push("/login");
+    } else {
       fetchData();
     }
-  }, [session]); 
-
+  }, [session]);
   const addToCart = (val) => {
     dispatch(addCart(val));
     dispatch(addPrice(val.price));
