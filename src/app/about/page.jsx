@@ -4,7 +4,8 @@ import React, { useState } from "react";
 import Navbar from "../_navbar/navbar";
 import { toast, ToastContainer } from "react-toastify";
 import Footer from "@/component/Footer";
-
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 const Page = () => {
   const [post, setPost] = useState({
     name: "",
@@ -16,6 +17,13 @@ const Page = () => {
   const handleInput = (e) => {
     setPost({ ...post, [e.target.name]: e.target.value });
   };
+  const { data: session, status } = useSession();
+  const router = useRouter()
+  console.log(session);
+  if (!session) {
+    router.push("/login");
+    return null;
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();

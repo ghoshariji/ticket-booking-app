@@ -17,13 +17,15 @@ import {
 import "react-toastify/dist/ReactToastify.css";
 import Footer from "@/component/Footer";
 import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 const Page = () => {
   const dispatch = useDispatch();
   const [ticketData, setTicketData] = useState(null);
   const [chartData, setChartData] = useState([]);
   const { data: session, status } = useSession();
-  console.log(data);
+  const router = useRouter()
+  console.log(session);
   if (!session) {
     router.push("/login");
     return null;

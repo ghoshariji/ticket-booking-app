@@ -3,13 +3,21 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Navbar from "../_navbar/navbar";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 const Page = () => {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [image, setImage] = useState("");
   const [imageUrl, setImageUrl] = useState("");
-
+  const { data: session, status } = useSession();
+  const router = useRouter()
+  console.log(session);
+  if (!session) {
+    router.push("/login");
+    return null;
+  }
   const handleImageInput = (e) => {
     const file = e.target.files[0];
     if (file) {

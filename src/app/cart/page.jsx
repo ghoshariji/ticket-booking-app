@@ -9,11 +9,18 @@ import "react-toastify/dist/ReactToastify.css";
 import { addCart, deleteCart } from "@/redux/slice/cartSlice";
 import { addPrice, deletePrice } from "@/redux/slice/cartTotalPrice";
 import Image from "next/image";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 const Page = () => {
   const dispatch = useDispatch();
   const data = useSelector((state) => state.cart);
   const dataPrice = useSelector((state) => state.cartPrice);
-
+  const { data: session, status } = useSession();
+  const router = useRouter()
+  if (!session) {
+    router.push("/login");
+    return null;
+  }
   const handleBuy = async (val, price) => {
     try {
       const res = await fetch("api/book", {

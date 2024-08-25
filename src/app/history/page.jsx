@@ -3,6 +3,8 @@
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import Navbar from "../_navbar/navbar";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 import {
   LineChart,
   Line,
@@ -16,7 +18,13 @@ import {
 const Page = () => {
   const [data, setData] = useState([]);
   const [newData, setNewData] = useState([]);
-  
+  const { data: session, status } = useSession();
+  const router = useRouter()
+  console.log(session);
+  if (!session) {
+    router.push("/login");
+    return null;
+  }
   const fetchData = async () => {
     try {
       //const userId = localStorage.getItem("userId")
