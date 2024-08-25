@@ -41,13 +41,11 @@ const Page = () => {
     setTicketData(data.message);
   };
 
-  useEffect(() => {
-    if (!session) {
-      router.push("/login");
-    } else {
+  if (session) {
+    useEffect(() => {
       fetchData();
-    }
-  }, [session]);
+    }, [session]);
+  }
   const addToCart = (val) => {
     dispatch(addCart(val));
     dispatch(addPrice(val.price));

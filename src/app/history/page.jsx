@@ -45,13 +45,12 @@ const Page = () => {
     }
   };
 
+  if(session)
+  {
   useEffect(() => {
-    if (!session) {
-      router.push("/login");
-    } else {
       fetchData();
-    }
   }, [session]);
+}
   return (
     <div>
       <Navbar />

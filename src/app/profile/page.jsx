@@ -79,14 +79,12 @@ const Page = () => {
     }
   };
 
+  if(session)
+  {
   useEffect(() => {
-    if (!session) {
-      router.push("/login");
-    } else {
-      fetchData();
-    }
+    fetchImageData()
   }, [session]);
-
+  }
   return (
     <>
       <Navbar />
