@@ -49,7 +49,7 @@ const Page = () => {
   {
   useEffect(() => {
       fetchData();
-  }, [session]);
+  }, []);
 }
   return (
     <div>
