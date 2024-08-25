@@ -42,8 +42,10 @@ const Page = () => {
   };
 
   useEffect(() => {
-    fetchData();
-  }, []);
+    if (session) {
+      fetchData();
+    }
+  }, [session]); 
 
   const addToCart = (val) => {
     dispatch(addCart(val));

@@ -80,8 +80,10 @@ const Page = () => {
   };
 
   useEffect(() => {
-    fetchImageData();
-  }, []);
+    if (session) {
+      fetchData();
+    }
+  }, [session]); 
 
   return (
     <>

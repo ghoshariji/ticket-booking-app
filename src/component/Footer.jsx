@@ -17,9 +17,9 @@ export default function Footer() {
           <figure className="mt-10">
             <blockquote className="text-center text-xl font-semibold leading-8 text-white sm:text-2xl sm:leading-9">
               <p>
-                “Booking tickets for my favorite movies has never been easier.
+                &ldquo;Booking tickets for my favorite movies has never been easier.
                 The experience is seamless, and the customer service is
-                outstanding. Can't wait to book my next show!”
+                outstanding. Can&apos;t wait to book my next show!&rdquo;
               </p>
             </blockquote>
             <figcaption className="mt-10">

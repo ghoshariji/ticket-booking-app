@@ -46,9 +46,10 @@ const Page = () => {
   };
 
   useEffect(() => {
-    fetchData();
-  }, []);
-
+    if (session) {
+      fetchData();
+    }
+  }, [session]); 
   return (
     <div>
       <Navbar />

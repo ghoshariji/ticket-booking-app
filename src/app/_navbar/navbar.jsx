@@ -18,6 +18,7 @@ import {
   PlayCircleIcon,
 } from "@heroicons/react/20/solid";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 const navigation1 = [
   { name: "Home", href: "/home" },
@@ -38,10 +39,12 @@ export default function Navbar() {
         <div className="flex lg:flex-1">
           <a href="#" className="-m-1.5 p-1.5">
             <span className="sr-only">Your Company</span>
-            <img
+            <Image
               className="h-8 w-auto"
               src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-              alt=""
+              alt="Logo"
+              height={32} // Set the height value (in pixels)
+              width={32} // You can add width for consistent sizing
             />
           </a>
         </div>
@@ -71,10 +74,12 @@ export default function Navbar() {
           <Popover className="relative">
             <PopoverButton className="inline-flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
               <div className="flex -space-x-2 overflow-hidden">
-                <img
+                <Image
                   className="inline-block h-10 w-10 rounded-full ring-2 ring-white"
                   src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
                   alt="User Avatar"
+                  height={32} // Set the height value (in pixels)
+                  width={32}
                 />
               </div>
             </PopoverButton>
