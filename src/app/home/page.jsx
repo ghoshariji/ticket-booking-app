@@ -30,6 +30,10 @@ const Page = () => {
     router.push("/login");
     return null;
   }
+  
+  useEffect(() => {
+    fetchData();
+  }, []);
   const fetchData = async () => {
     const res = await fetch("/api/ticket");
     const data = await res.json();
@@ -41,11 +45,8 @@ const Page = () => {
     setTicketData(data.message);
   };
 
-  if (session) {
-    useEffect(() => {
-      fetchData();
-    }, []);
-  }
+
+  
   const addToCart = (val) => {
     dispatch(addCart(val));
     dispatch(addPrice(val.price));

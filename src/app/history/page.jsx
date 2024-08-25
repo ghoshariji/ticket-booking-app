@@ -26,6 +26,9 @@ const Page = () => {
     router.push("/login");
     return null;
   }
+  useEffect(() => {
+    fetchData();
+}, []);
   const fetchData = async () => {
     try {
       //const userId = localStorage.getItem("userId")
@@ -45,12 +48,9 @@ const Page = () => {
     }
   };
 
-  if(session)
-  {
-  useEffect(() => {
-      fetchData();
-  }, []);
-}
+
+
+
   return (
     <div>
       <Navbar />

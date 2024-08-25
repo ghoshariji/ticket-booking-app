@@ -19,6 +19,9 @@ const Page = () => {
     router.push("/login");
     return null;
   }
+  useEffect(() => {
+    fetchImageData()
+  }, [session]);
   const handleImageInput = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -79,12 +82,9 @@ const Page = () => {
     }
   };
 
-  if(session)
-  {
-  useEffect(() => {
-    fetchImageData()
-  }, []);
-  }
+
+
+  
   return (
     <>
       <Navbar />
