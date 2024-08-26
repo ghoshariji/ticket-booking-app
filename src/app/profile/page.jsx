@@ -14,17 +14,31 @@ const Page = () => {
   const [imageUrl, setImageUrl] = useState("");
   const { data: session, status } = useSession();
   const router = useRouter();
-  console.log(session);
-  if (!session) {
-    router.push("/login");
-    return null;
-  }
   useEffect(() => {
-    i(session);
-    {
-      fetchImageData();
+    if (!session) {
+      router.push("/login");
+      return;
     }
-  }, [session]);
+
+    const fetchImageData = async () => {
+      try {
+        const email = "a@gmail.com";
+        const res = await fetch("api/getProfile", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email }),
+        });
+        const data = await res.json();
+        newProfileImage(data.data.profileImage, data.data.contentType);
+        console.log(data.data);
+      } catch (error) {
+        console.log("Error" + error);
+      }
+    };
+    fetchImageData();
+  }, [session, router]);
   const handleImageInput = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -65,24 +79,6 @@ const Page = () => {
     const url = URL.createObjectURL(blob);
     setImageUrl(url);
     return () => URL.revokeObjectURL(url);
-  };
-
-  const fetchImageData = async () => {
-    try {
-      const email = "a@gmail.com";
-      const res = await fetch("api/getProfile", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email }),
-      });
-      const data = await res.json();
-      newProfileImage(data.data.profileImage, data.data.contentType);
-      console.log(data.data);
-    } catch (error) {
-      console.log("Error" + error);
-    }
   };
 
   return (

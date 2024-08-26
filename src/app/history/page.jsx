@@ -22,34 +22,33 @@ const Page = () => {
   const { data: session, status } = useSession();
   const router = useRouter();
   console.log(session);
-  if (!session) {
-    router.push("/login");
-    return null;
-  }
   useEffect(() => {
-    i(session);
-    {
-      fetchData();
+    if (!session) {
+      router.push("/login");
+      return;
     }
-  }, [session]);
-  const fetchData = async () => {
-    try {
-      //const userId = localStorage.getItem("userId")
-      const userId = 1;
-      const res = await fetch(`/api/history?userId=${userId}`);
-      const data = await res.json();
-      let count = 1;
-      const updatedData = data.data.map((val) => ({
-        name: count++,
-        value: val.priceMovie,
-        movieTitle: val.movieName.join(", "), // Assuming movieName is an array
-      }));
-      setNewData(updatedData);
-      setData(data.data);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  };
+
+    const fetchData = async () => {
+      try {
+        //const userId = localStorage.getItem("userId")
+        const userId = 1;
+        const res = await fetch(`/api/history?userId=${userId}`);
+        const data = await res.json();
+        let count = 1;
+        const updatedData = data.data.map((val) => ({
+          name: count++,
+          value: val.priceMovie,
+          movieTitle: val.movieName.join(", "), // Assuming movieName is an array
+        }));
+        setNewData(updatedData);
+        setData(data.data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, [session, router]);
 
   return (
     <div>

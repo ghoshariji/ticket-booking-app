@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import Navbar from "../_navbar/navbar";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addCart } from "../../redux/slice/cartSlice";
 import { addPrice } from "../../redux/slice/cartTotalPrice";
 import { toast, ToastContainer } from "react-toastify";
@@ -23,30 +23,33 @@ const Page = () => {
   const dispatch = useDispatch();
   const [ticketData, setTicketData] = useState(null);
   const [chartData, setChartData] = useState([]);
-  const { data: session, status } = useSession();
+  const { data: session } = useSession();
   const router = useRouter();
-  console.log(session);
-  if (!session) {
-    router.push("/login");
-    return null;
-  }
 
   useEffect(() => {
-    is(session);
-    {
-      fetchData();
+    if (!session) {
+      router.push("/login");
+      return;
     }
-  }, [session]);
-  const fetchData = async () => {
-    const res = await fetch("/api/ticket");
-    const data = await res.json();
-    const updatedData = data.message.map((val) => ({
-      name: val.destinationS,
-      value: val.isCancel ? 0 : 1,
-    }));
-    setChartData(updatedData);
-    setTicketData(data.message);
-  };
+
+    const fetchData = async () => {
+      const res = await fetch("/api/ticket");
+      const data = await res.json();
+      const updatedData = data.message.map((val) => ({
+        name: val.destinationS,
+        value: val.isCancel ? 0 : 1,
+      }));
+      setChartData(updatedData);
+      setTicketData(data.message);
+    };
+
+    fetchData();
+
+    // Cleanup if necessary
+    return () => {
+      // Any cleanup logic if needed
+    };
+  }, [session, router]);
 
   const addToCart = (val) => {
     dispatch(addCart(val));
