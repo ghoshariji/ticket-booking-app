@@ -13,14 +13,17 @@ const Page = () => {
   const [image, setImage] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const { data: session, status } = useSession();
-  const router = useRouter()
+  const router = useRouter();
   console.log(session);
   if (!session) {
     router.push("/login");
     return null;
   }
   useEffect(() => {
-    fetchImageData()
+    i(session);
+    {
+      fetchImageData();
+    }
   }, [session]);
   const handleImageInput = (e) => {
     const file = e.target.files[0];
@@ -82,9 +85,6 @@ const Page = () => {
     }
   };
 
-
-
-  
   return (
     <>
       <Navbar />

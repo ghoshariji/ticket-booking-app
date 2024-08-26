@@ -20,15 +20,18 @@ const Page = () => {
   const [data, setData] = useState([]);
   const [newData, setNewData] = useState([]);
   const { data: session, status } = useSession();
-  const router = useRouter()
+  const router = useRouter();
   console.log(session);
   if (!session) {
     router.push("/login");
     return null;
   }
   useEffect(() => {
-    fetchData();
-}, []);
+    i(session);
+    {
+      fetchData();
+    }
+  }, [session]);
   const fetchData = async () => {
     try {
       //const userId = localStorage.getItem("userId")
@@ -48,9 +51,6 @@ const Page = () => {
     }
   };
 
-
-
-
   return (
     <div>
       <Navbar />
@@ -66,8 +66,12 @@ const Page = () => {
       <div className="bg-gray-900 p-8 rounded-md w-full">
         <div className="flex items-center justify-between pb-6">
           <div>
-            <h2 className="text-white font-semibold text-lg">Movie Purchases</h2>
-            <span className="text-xs text-gray-400">Details of purchased movies</span>
+            <h2 className="text-white font-semibold text-lg">
+              Movie Purchases
+            </h2>
+            <span className="text-xs text-gray-400">
+              Details of purchased movies
+            </span>
           </div>
           <div className="flex items-center space-x-4">
             <button className="bg-red-600 px-4 py-2 rounded-md text-white font-semibold tracking-wide cursor-pointer">
@@ -113,9 +117,7 @@ const Page = () => {
                           className="rounded"
                         /> */}
                       </div>
-                      <div>
-                        {val.movieName.join(", ")}
-                      </div>
+                      <div>{val.movieName.join(", ")}</div>
                     </div>
                   </td>
                   <td className="px-5 py-5 border-b border-gray-700 bg-gray-900 text-sm">
@@ -137,7 +139,9 @@ const Page = () => {
             </tbody>
           </table>
           <div className="px-5 py-5 bg-gray-900 border-t border-gray-700 flex justify-between items-center">
-            <span className="text-xs text-gray-400">Showing 1 to {data.length} of {data.length} Entries</span>
+            <span className="text-xs text-gray-400">
+              Showing 1 to {data.length} of {data.length} Entries
+            </span>
             <div className="inline-flex mt-2">
               <button className="text-sm text-white bg-red-600 py-2 px-4 rounded-l">
                 Prev
